@@ -4,4 +4,5 @@ resource "aws_launch_template" "log" {
   instance_type          = "t2.micro"
   key_name               = "prd"
   vpc_security_group_ids = [aws_security_group.sgl.id]
+  user_data              = base64encode("./scri.sh")
 }
