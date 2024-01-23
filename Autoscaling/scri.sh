@@ -4,4 +4,4 @@ sudo systemctl enable nginx && \
 sudo systemctl start nginx && \
 aws s3 cp --recursive s3://dves /home/ec2-user/bucket && \
 sudo rm -rf /usr/share/nginx/html/index.html && \
-sudo mv /home/ec2-user/bucket/* /usr/share/nginx/html/
+sudo cp /home/ec2-user/bucket/* /usr/share/nginx/html/
