@@ -1,7 +1,7 @@
 resource "aws_launch_template" "dves" {
   name_prefix            = "dves"
-  image_id               = "ami-04f767d954fe2d2d1"
-  instance_type          = "t2.micro"
+  image_id               = var.image_id
+  instance_type          = var.instance_type
   key_name               = "prd"
   vpc_security_group_ids = [aws_security_group.dves.id]
   user_data              = base64encode(file("./dves.sh"))
