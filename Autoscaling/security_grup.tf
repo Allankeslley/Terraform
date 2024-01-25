@@ -1,6 +1,6 @@
-resource "aws_security_group" "sgl" {
-  name   = "sgl"
-  vpc_id = "vpc-0d7cc4eec0266c6d3"
+resource "aws_security_group" "dves" {
+  name   = "dves"
+  vpc_id = data.aws_vpc.dves.id
 
   ingress {
     from_port   = 22

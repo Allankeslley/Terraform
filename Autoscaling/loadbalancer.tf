@@ -1,8 +1,8 @@
-resource "aws_lb" "west" {
-  name               = "west-lb-tf"
+resource "aws_lb" "dves" {
+  name               = "dves"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.sgl.id]
-  subnets            = ["subnet-095ea23112c199b78", "subnet-093c8047c9583c8db", "subnet-0d7894ffc50771b55"]
+  security_groups    = [aws_security_group.dves.id]
+  subnets            = [data.aws_subnet.dvesc.id, data.aws_subnet.dvesb.id, data.aws_subnet.dvesa.id]
   #enable_deletion_protection = true
 }

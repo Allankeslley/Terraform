@@ -1,9 +1,9 @@
-resource "aws_iam_role" "guns_role" {
-  name               = "gunsrole"
+resource "aws_iam_role" "dves" {
+  name               = "dves"
   assume_role_policy = (file("./arq.json"))
 
 }
-resource "aws_iam_instance_profile" "exemplo_profile" {
-  name = "exemplo_profile"
-  role = aws_iam_role.guns_role.name
+resource "aws_iam_instance_profile" "dves" {
+  name = "dves"
+  role = aws_iam_role.dves.name
 }
