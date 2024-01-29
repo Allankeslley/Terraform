@@ -2,26 +2,10 @@ resource "aws_s3_bucket" "bucket" {
   bucket = "hml.dves.cloud"
 }
 
-data "aws_canonical_user_id" "current" {}
-
 resource "aws_s3_bucket_acl" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
-
-  access_control_policy {
-    grant {
-      grantee {
-        id   = data.aws_canonical_user_id.current.id
-        type = "CanonicalUser"
-      }
-      permission = "FULL_CONTROL"
-    }
-
-    owner {
-      id = data.aws_canonical_user_id.current.id
-    }
-  }
-
-  depends_on = [aws_s3_bucket_ownership_controls.bucket]
+  bucket     = aws_s3_bucket.bucket.id
+  acl        = "public-read"
+  depends_on = [aws_s3_bucket_ownership_controls.bucket, aws_s3_bucket_public_access_block.bucket]
 
 }
 
@@ -39,18 +23,6 @@ resource "aws_s3_bucket_ownership_controls" "bucket" {
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
-}
-resource "aws_s3_bucket_website_configuration" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "index.html"
-  }
-
 }
 
 resource "aws_s3_bucket_policy" "bucket" {
@@ -72,6 +44,21 @@ resource "aws_s3_bucket_policy" "bucket" {
     ]
   })
 }
+
+# resource "aws_s3_bucket_website_configuration" "bucket" {
+#   bucket = aws_s3_bucket.bucket.id
+
+#   index_document {
+#     suffix = "index.html"
+#   }
+
+#   error_document {
+#     key = "index.html"
+#   }
+
+# }
+
+
 
 locals {
   s3_origin_id = "myS3Origin"
