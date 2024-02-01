@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "dves-state"
+    bucket = "dves-state-virginia"
     key    = "ste"
-    region = "us-east-2"
+    region = "us-east-1"
   }
 }

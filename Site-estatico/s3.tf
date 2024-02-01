@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "hml.dves.cloud"
+  bucket = "hml2.dves.cloud"
 }
 
 resource "aws_s3_bucket_acl" "bucket" {
@@ -81,7 +81,7 @@ resource "aws_cloudfront_distribution" "site" {
   #   prefix          = "myprefix"
   # }
 
-  # aliases = ["dves.cloud"]
+  aliases = ["*.dves.cloud", "jatr.dves.cloud"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
@@ -101,6 +101,7 @@ resource "aws_cloudfront_distribution" "site" {
     default_ttl            = 3600
     max_ttl                = 86400
   }
+  # aliases = ["jatr.dves.cloud"]
 
   # Cache behavior with precedence 0
   ordered_cache_behavior {
@@ -154,12 +155,14 @@ resource "aws_cloudfront_distribution" "site" {
       restriction_type = "none"
     }
   }
-
   tags = {
     Environment = "production"
   }
-
+  # viewer_certificate {
+  #   cloudfront_default_certificate = true
+  # }
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = aws_acm_certificate.dves.arn
+    ssl_support_method  = "sni-only"
   }
 }
