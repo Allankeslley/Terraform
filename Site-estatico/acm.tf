@@ -1,4 +1,4 @@
 resource "aws_acm_certificate" "dves" {
-  domain_name       = "*.dves.cloud"
+  domain_name       = "*.${var.domain}"
   validation_method = "DNS"
 }

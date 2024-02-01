@@ -1,6 +1,9 @@
 variable "bucket_name" {
-  default = "bucket_site"
+  default = "batata.dves.cloud"
 }
 variable "domain" {
-  default = "rt.dves.cloud"
+  default = "dves.cloud"
+}
+variable "sub_domain" {
+  default = "rt"
 }
