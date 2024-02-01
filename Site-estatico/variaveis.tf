@@ -1,9 +1,3 @@
-variable "bucket_name" {
-  default = "batata.dves.cloud"
-}
-variable "domain" {
-  default = "dves.cloud"
-}
-variable "sub_domain" {
-  default = "rt"
-}
+variable "bucket_name" {}
+variable "domain" {}
+variable "sub_domain" {}
