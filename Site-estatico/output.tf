@@ -10,7 +10,7 @@ output "cloudfront_distribution_site_arn" {
 output "cloudfront_dcloudfront_distribution_site_domain_nameistribution_domain_name" {
   value = aws_cloudfront_distribution.site.domain_name
 }
-output "acm_certificate._dves_arn" {
+output "acm_certificate_dves_arn" {
   value = aws_acm_certificate.dves.arn
 }
 output "acm_certificate_dves_domain_validation_options" {

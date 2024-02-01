@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "hml2.dves.cloud"
+  bucket = var.bucket_name
 }
 
 resource "aws_s3_bucket_acl" "bucket" {
