@@ -1,3 +1,3 @@
-bucket_name = "dves_cloud_batata"
-domain      = "*.dves.cloud"
+bucket_name = "dves.cloud.batata"
+domain      = "dves.cloud"
 sub_domain  = "batata"
