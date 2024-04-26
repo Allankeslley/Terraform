@@ -11,3 +11,10 @@ variable "subnet" {
     }
   }
 }
+
+variable "vm" {
+
+  type    = string
+  default = "pcd"
+
+}

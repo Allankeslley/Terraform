@@ -2,7 +2,7 @@ resource "aws_vpc" "vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "vm-playground"
+    Name = "${var.vm}-playground"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_subnet" "subnet" {
   cidr_block        = each.value["cidr"]
 
   tags = {
-    Name = "vm-subnet-${each.value["az"]}"
+    Name = "${var.vm}-subnet-${each.value["az"]}"
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_route_table" "route_table" {
   }
 
   tags = {
-    Name = "vm-route-table-${each.value["az"]}"
+    Name = "${var.vm}-route-table-${each.value["az"]}"
   }
 
 }
@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "vm-internet-gateway"
+    Name = "${var.vm}-internet-gateway"
   }
 }
 
@@ -53,12 +53,12 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [aws_security_group.security_group.id]
 
   tags = {
-    Name = "vm-instance"
+    Name = "${var.vm}-instance"
   }
 }
 
 resource "aws_security_group" "security_group" {
-  name   = "ssh"
+  name   = "${var.vm}-ssh"
   vpc_id = aws_vpc.vpc.id
 
   ingress {
